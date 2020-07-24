@@ -5,6 +5,9 @@ import { randFirst, randLast, toLeft, toRight } from './store/actions';
 
 // == Rendu dans le DOM
 function renderNbColors() {
+  // J'appelle store.getState dans chacune de mes fonctions
+  // comme ça, à chaque fois que ma fonction est exécutée
+  // j'obtiens la dernière version de mon state
   const state = store.getState();
   const { nbColors } = state;
 
@@ -35,6 +38,7 @@ function renderColors() {
   document.getElementById('colors').innerHTML = result;
 }
 
+// Je crée une fonction qui met à jour le DOM
 const updateDom = () => {
   renderNbColors();
   renderGradient();
@@ -51,6 +55,11 @@ store.subscribe(updateDom);
 // == Controls
 document.getElementById('randAll').addEventListener('click', () => {
   // debug
+  // Je dispatch les actions à l'aide du store.
+  // Et au lieu de fournir un objet d'action "à la mano"
+  // J'utilise les action creators (functions) et ces
+  // action creators se chargeront pour moi de générer
+  // un objet d'action formatté correctement
   store.dispatch(randFirst(randomHexColor()));
   store.dispatch(randLast(randomHexColor()));
 });
