@@ -19,3 +19,27 @@ Une fonction. Sa responsabilité est de nous dire à quoi doit ressembler le sta
 Elle doit renvoyer le state initial.
 
 Pour chaque action qui aura lieu dans mon application, cette fonction devra renvoyer le nouvel état de mon state.
+
+## Dispatch
+
+Une méthode du store qui permet d'envoyer au reducer une action.
+
+## Action
+
+Un objet javascript qui sera utilisé par le reducer pour savoir comment modifier le state. Une action est TOUJOURS composée d'au moins une propriété: "type"
+
+```javascript
+{
+  type: 'ALLUMER_LUMIERE'
+}
+
+{
+  type: 'ETEINDRE_TV'
+}
+
+{
+  type: 'CHANGER_COULEUR_LAMPE_SALON',
+  couleur: '#f0f'
+}
+
+```

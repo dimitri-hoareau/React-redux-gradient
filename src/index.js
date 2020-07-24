@@ -76,7 +76,7 @@ document.getElementById("toLeft").addEventListener("click", () => {
 });
 
 document.getElementById("toRight").addEventListener("click", () => {
-  state.direction = "90deg";
+  // state.direction = "90deg";
   renderGradient();
   renderColors();
 });
