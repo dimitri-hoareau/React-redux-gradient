@@ -43,11 +43,14 @@ renderColors();
 document.getElementById("randAll").addEventListener("click", () => {
   // debug
   console.log("Random all colors");
-  // data
-  // state.nbColors += 2;
-  // state.firstColor = randomHexColor();
-  // state.lastColor = randomHexColor();
-  // ui
+  store.dispatch({
+    type: "RAND_FIRST",
+    color: randomHexColor(),
+  });
+  store.dispatch({
+    type: "RAND_LAST",
+    color: randomHexColor(),
+  });
   renderNbColors();
   renderGradient();
   renderColors();
@@ -58,6 +61,7 @@ document.getElementById("randFirst").addEventListener("click", () => {
   // state.firstColor = randomHexColor();
   store.dispatch({
     type: "RAND_FIRST",
+    color: randomHexColor(),
   });
   renderNbColors();
   renderGradient();
@@ -65,8 +69,10 @@ document.getElementById("randFirst").addEventListener("click", () => {
 });
 
 document.getElementById("randLast").addEventListener("click", () => {
-  // state.nbColors += 1;
-  // state.lastColor = randomHexColor();
+  store.dispatch({
+    type: "RAND_LAST",
+    color: randomHexColor(),
+  });
   renderNbColors();
   renderGradient();
   renderColors();

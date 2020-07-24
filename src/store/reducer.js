@@ -1,5 +1,3 @@
-import { randomHexColor, generateSpanColor } from "../utils";
-
 const stateInitial = {
   firstColor: "#e367a4",
   lastColor: "#48b1f3",
@@ -15,6 +13,13 @@ const reducer = (state = stateInitial, action = {}) => {
         firstColor: randomHexColor(),
         nbColors: state.nbColors + 1,
       };
+    case "RAND_LAST":
+      return {
+        ...state,
+        lastColor: randomHexColor(),
+        nbColors: state.nbColors + 1,
+      };
+
     default:
       return state;
   }
