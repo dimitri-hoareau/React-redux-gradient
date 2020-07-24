@@ -56,6 +56,9 @@ document.getElementById("randAll").addEventListener("click", () => {
 document.getElementById("randFirst").addEventListener("click", () => {
   // state.nbColors += 1;
   // state.firstColor = randomHexColor();
+  store.dispatch({
+    type: "RAND_FIRST",
+  });
   renderNbColors();
   renderGradient();
   renderColors();
