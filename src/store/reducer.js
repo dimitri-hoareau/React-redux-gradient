@@ -1,14 +1,24 @@
-import { RAND_FIRST, RAND_LAST } from "./actions";
+import { RAND_FIRST, RAND_LAST, TO_LEFT, TO_RIGHT } from './actions';
 
 const stateInitial = {
-  firstColor: "#e367a4",
-  lastColor: "#48b1f3",
-  direction: "90deg",
+  firstColor: '#e367a4',
+  lastColor: '#48b1f3',
+  direction: '90deg',
   nbColors: 0,
 };
 
 const reducer = (state = stateInitial, action = {}) => {
   switch (action.type) {
+    case TO_LEFT:
+      return {
+        ...state,
+        direction: '270deg',
+      };
+    case TO_RIGHT:
+      return {
+        ...state,
+        direction: '90deg',
+      };
     case RAND_FIRST:
       return {
         ...state,
