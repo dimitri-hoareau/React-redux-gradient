@@ -1,6 +1,7 @@
 // == Imports
 import { randomHexColor, generateSpanColor } from "./utils";
 import store from "./store";
+import { randFirst } from "./store/actions";
 
 // == Rendu dans le DOM
 function renderNbColors() {
@@ -34,10 +35,18 @@ function renderColors() {
   document.getElementById("colors").innerHTML = result;
 }
 
+const updateDom = () => {
+  renderNbColors();
+  renderGradient();
+  renderColors();
+};
+
 // == Initialisation
-renderNbColors();
-renderGradient();
-renderColors();
+updateDom();
+
+// Je souhaite appeler updateDOM dés que mon state
+// a été mis à jour
+store.subscribe(updateDom);
 
 // == Controls
 document.getElementById("randAll").addEventListener("click", () => {
@@ -51,21 +60,12 @@ document.getElementById("randAll").addEventListener("click", () => {
     type: "RAND_LAST",
     color: randomHexColor(),
   });
-  renderNbColors();
-  renderGradient();
-  renderColors();
 });
 
 document.getElementById("randFirst").addEventListener("click", () => {
   // state.nbColors += 1;
   // state.firstColor = randomHexColor();
-  store.dispatch({
-    type: "RAND_FIRST",
-    color: randomHexColor(),
-  });
-  renderNbColors();
-  renderGradient();
-  renderColors();
+  store.dispatch(randFirst(randomHexColor()));
 });
 
 document.getElementById("randLast").addEventListener("click", () => {
@@ -73,19 +73,11 @@ document.getElementById("randLast").addEventListener("click", () => {
     type: "RAND_LAST",
     color: randomHexColor(),
   });
-  renderNbColors();
-  renderGradient();
-  renderColors();
 });
 
 document.getElementById("toLeft").addEventListener("click", () => {
   // state.direction = "270deg";
-  renderGradient();
-  renderColors();
 });
-
 document.getElementById("toRight").addEventListener("click", () => {
   // state.direction = "90deg";
-  renderGradient();
-  renderColors();
 });

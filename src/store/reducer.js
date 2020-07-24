@@ -1,3 +1,5 @@
+import { RAND_FIRST, RAND_LAST } from "./actions";
+
 const stateInitial = {
   firstColor: "#e367a4",
   lastColor: "#48b1f3",
@@ -7,16 +9,16 @@ const stateInitial = {
 
 const reducer = (state = stateInitial, action = {}) => {
   switch (action.type) {
-    case "RAND_FIRST":
+    case RAND_FIRST:
       return {
         ...state,
-        firstColor: randomHexColor(),
+        firstColor: action.color,
         nbColors: state.nbColors + 1,
       };
-    case "RAND_LAST":
+    case RAND_LAST:
       return {
         ...state,
-        lastColor: randomHexColor(),
+        lastColor: action.color,
         nbColors: state.nbColors + 1,
       };
 
