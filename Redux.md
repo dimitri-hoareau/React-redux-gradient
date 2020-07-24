@@ -43,3 +43,19 @@ Un objet javascript qui sera utilisé par le reducer pour savoir comment modifie
 }
 
 ```
+
+## EXERCICES
+
+Terminer les actions pour:
+
+- randLast
+- toLeft
+- toRight
+
+Dans index.js à la racine
+
+Utiliser les action creators faits dans le fichier d'action
+
+Dans reducer.js
+
+Réagir aux nouveaux types d'action, et donc modifier le state en fonction.
