@@ -1,5 +1,10 @@
 import React from 'react';
-
+/*
+Props
+- firstColor
+- lastColor
+- Direction
+*/
 const Gradient = () => (
   <div
     id="gradient"

@@ -1,6 +1,12 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 
+/*
+ Props:
+ - randFirst (func)
+ - randLast (func)
+*/
+
 const Controls = () => (
   <div className="buttons group">
     <button className="button" id="randFirst">
