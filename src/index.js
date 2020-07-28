@@ -3,6 +3,14 @@ import { randomHexColor, generateSpanColor } from './utils';
 import store from './store';
 import { randFirst, randLast, toDirection } from './store/actions';
 
+/* Créer les composants :
+ - App
+ - Controls
+ - DirectionButton
+ - Gradient
+ - NbColors
+
+*/
 // == Rendu dans le DOM
 function renderNbColors() {
   // J'appelle store.getState dans chacune de mes fonctions
