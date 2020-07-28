@@ -4,8 +4,8 @@ import React from 'react';
 
 // == Import
 import './styles.css';
-import NbColors from '../NbColors';
-import Controls from '../Controls';
+import NbColors from '../../container/NbColors';
+import Controls from '../../container/Controls';
 import Colors from '../Colors';
 import Gradient from '../Gradient';
 import DirectionButton from '../DirectionButton';

@@ -1,16 +1,18 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
 /* props attendus :
  - firstColor
  - lastColor
  - direction
 */
 
-const Colors = () => (
-  <div id="colors">
-    <span style={{ color: '#f0f' }}>#f0f</span>→
-    <span style={{ color: '#0f0' }}>#0f0</span>
-  </div>
-);
-
+const Colors = () => {
+  const { firstColor, lastColor } = useSelector((state) => state);
+  return (
+    <div id="colors">
+      <span style={{ color: firstColor }}>{firstColor}</span>→
+      <span style={{ color: lastColor }}>{lastColor}</span>
+    </div>
+  );
+};
 export default Colors;
