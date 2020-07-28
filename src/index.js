@@ -1,13 +1,7 @@
 // == Imports
 import { randomHexColor, generateSpanColor } from './utils';
 import store from './store';
-import {
-  randFirst,
-  randLast,
-  toLeft,
-  toRight,
-  toDirection,
-} from './store/actions';
+import { randFirst, randLast, toDirection } from './store/actions';
 
 // == Rendu dans le DOM
 function renderNbColors() {
@@ -36,10 +30,27 @@ function renderColors() {
   const firstSpan = generateSpanColor(firstColor);
   const lastSpan = generateSpanColor(lastColor);
 
-  const result =
-    direction === '90deg'
-      ? `${firstSpan} → ${lastSpan}`
-      : `${lastSpan} ← ${firstSpan}`;
+  let result;
+
+  switch (direction) {
+    case '90deg':
+      result = `${firstSpan} → ${lastSpan}`;
+      break;
+    case '45deg':
+      result = `${firstSpan} &nearr; ${lastSpan}`;
+      break;
+    case '135deg':
+      result = `${firstSpan} &searr; ${lastSpan}`;
+      break;
+    case '225deg':
+      result = `${lastSpan} &swarr; ${firstSpan}`;
+      break;
+    case '315deg':
+      result = `${lastSpan} &nwarr; ${firstSpan}`;
+      break;
+    default:
+      result = `${firstSpan} ← ${lastSpan}`;
+  }
 
   document.getElementById('colors').innerHTML = result;
 }
