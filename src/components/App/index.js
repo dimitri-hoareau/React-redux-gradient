@@ -9,6 +9,11 @@ import Controls from '../Controls';
 import Colors from '../Colors';
 import Gradient from '../Gradient';
 import DirectionButton from '../DirectionButton';
+
+// utiliser le state dans le composant Gradient
+// (vous avec un exemple dans le composant NbColors)
+// utliser dispatch dans le composant Controls
+
 // == Composant
 const App = () => (
   <div className="app">

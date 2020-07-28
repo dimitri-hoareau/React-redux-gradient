@@ -1,10 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import App from './components/App';
 
 const DOMNode = document.getElementById('root');
-
-render(<App />, DOMNode);
+// Le provider va permettre à ReactRedux d'avoir
+// accès à mon store depuis n'importe quel composant
+// à l'intérieur de App
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  DOMNode
+);
 
 // // == Imports
 // import { randomHexColor, generateSpanColor } from './utils';
