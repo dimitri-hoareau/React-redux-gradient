@@ -9,9 +9,15 @@ Props:
 
 */
 
-const DirectionButton = () => (
-  <button className="button" id="toLeft">
-    to left
+const DirectionButton = ({ text, toDirection, direction }) => (
+  <button
+    onClick={() => {
+      toDirection(direction);
+    }}
+    className="button"
+    id="toLeft"
+  >
+    {text}
   </button>
 );
 
