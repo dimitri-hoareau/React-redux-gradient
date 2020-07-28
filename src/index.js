@@ -1,125 +1,133 @@
-// == Imports
-import { randomHexColor, generateSpanColor } from './utils';
-import store from './store';
-import { randFirst, randLast, toDirection } from './store/actions';
+import React from 'react';
+import { render } from 'react-dom';
+import App from './components/App';
 
-/* Créer les composants :
- - App
- - Controls
- - DirectionButton
- - Gradient
- - NbColors
+const DOMNode = document.getElementById('root');
 
-*/
-// == Rendu dans le DOM
-function renderNbColors() {
-  // J'appelle store.getState dans chacune de mes fonctions
-  // comme ça, à chaque fois que ma fonction est exécutée
-  // j'obtiens la dernière version de mon state
-  const state = store.getState();
-  const { nbColors } = state;
+render(<App />, DOMNode);
 
-  document.getElementById('nbColors').innerHTML = `
-    ${nbColors} couleur(s) générée(s)
-  `;
-}
-function renderGradient() {
-  const state = store.getState();
-  const { direction, firstColor, lastColor } = state;
+// // == Imports
+// import { randomHexColor, generateSpanColor } from './utils';
+// import store from './store';
+// import { randFirst, randLast, toDirection } from './store/actions';
 
-  document.getElementById('gradient').style.background = `
-    linear-gradient(${direction},${firstColor},${lastColor})
-  `;
-}
-function renderColors() {
-  const state = store.getState();
-  const { direction, firstColor, lastColor } = state;
+// /* Créer les composants :
+//  - App
+//  - Controls
+//  - DirectionButton
+//  - Gradient
+//  - NbColors
 
-  const firstSpan = generateSpanColor(firstColor);
-  const lastSpan = generateSpanColor(lastColor);
+// */
+// // == Rendu dans le DOM
+// function renderNbColors() {
+//   // J'appelle store.getState dans chacune de mes fonctions
+//   // comme ça, à chaque fois que ma fonction est exécutée
+//   // j'obtiens la dernière version de mon state
+//   const state = store.getState();
+//   const { nbColors } = state;
 
-  let result;
+//   document.getElementById('nbColors').innerHTML = `
+//     ${nbColors} couleur(s) générée(s)
+//   `;
+// }
+// function renderGradient() {
+//   const state = store.getState();
+//   const { direction, firstColor, lastColor } = state;
 
-  switch (direction) {
-    case '90deg':
-      result = `${firstSpan} → ${lastSpan}`;
-      break;
-    case '45deg':
-      result = `${firstSpan} &nearr; ${lastSpan}`;
-      break;
-    case '135deg':
-      result = `${firstSpan} &searr; ${lastSpan}`;
-      break;
-    case '225deg':
-      result = `${lastSpan} &swarr; ${firstSpan}`;
-      break;
-    case '315deg':
-      result = `${lastSpan} &nwarr; ${firstSpan}`;
-      break;
-    default:
-      result = `${firstSpan} ← ${lastSpan}`;
-  }
+//   document.getElementById('gradient').style.background = `
+//     linear-gradient(${direction},${firstColor},${lastColor})
+//   `;
+// }
+// function renderColors() {
+//   const state = store.getState();
+//   const { direction, firstColor, lastColor } = state;
 
-  document.getElementById('colors').innerHTML = result;
-}
+//   const firstSpan = generateSpanColor(firstColor);
+//   const lastSpan = generateSpanColor(lastColor);
 
-// Je crée une fonction qui met à jour le DOM
-const updateDom = () => {
-  renderNbColors();
-  renderGradient();
-  renderColors();
-};
+//   let result;
 
-// == Initialisation
-updateDom();
+//   switch (direction) {
+//     case '90deg':
+//       result = `${firstSpan} → ${lastSpan}`;
+//       break;
+//     case '45deg':
+//       result = `${firstSpan} &nearr; ${lastSpan}`;
+//       break;
+//     case '135deg':
+//       result = `${firstSpan} &searr; ${lastSpan}`;
+//       break;
+//     case '225deg':
+//       result = `${lastSpan} &swarr; ${firstSpan}`;
+//       break;
+//     case '315deg':
+//       result = `${lastSpan} &nwarr; ${firstSpan}`;
+//       break;
+//     default:
+//       result = `${firstSpan} ← ${lastSpan}`;
+//   }
 
-// Je souhaite appeler updateDOM dés que mon state
-// a été mis à jour
-store.subscribe(updateDom);
+//   document.getElementById('colors').innerHTML = result;
+// }
 
-// == Controls
-document.getElementById('randAll').addEventListener('click', () => {
-  // debug
-  // Je dispatch les actions à l'aide du store.
-  // Et au lieu de fournir un objet d'action "à la mano"
-  // J'utilise les action creators (functions) et ces
-  // action creators se chargeront pour moi de générer
-  // un objet d'action formatté correctement
-  store.dispatch(randFirst(randomHexColor()));
-  store.dispatch(randLast(randomHexColor()));
-});
+// // Je crée une fonction qui met à jour le DOM
+// const updateDom = () => {
+//   renderNbColors();
+//   renderGradient();
+//   renderColors();
+// };
 
-document.getElementById('randFirst').addEventListener('click', () => {
-  // state.nbColors += 1;
-  // state.firstColor = randomHexColor();
-  store.dispatch(randFirst(randomHexColor()));
-});
+// // == Initialisation
+// updateDom();
 
-document.getElementById('randLast').addEventListener('click', () => {
-  store.dispatch(randLast(randomHexColor()));
-});
+// // Je souhaite appeler updateDOM dés que mon state
+// // a été mis à jour
+// store.subscribe(updateDom);
 
-document.getElementById('toLeft').addEventListener('click', () => {
-  // state.direction = "270deg";
-  store.dispatch(toDirection('270deg'));
-});
-document.getElementById('toRight').addEventListener('click', () => {
-  // state.direction = "90deg";
-  store.dispatch(toDirection('90deg'));
-});
+// // == Controls
+// document.getElementById('randAll').addEventListener('click', () => {
+//   // debug
+//   // Je dispatch les actions à l'aide du store.
+//   // Et au lieu de fournir un objet d'action "à la mano"
+//   // J'utilise les action creators (functions) et ces
+//   // action creators se chargeront pour moi de générer
+//   // un objet d'action formatté correctement
+//   store.dispatch(randFirst(randomHexColor()));
+//   store.dispatch(randLast(randomHexColor()));
+// });
 
-document.getElementById('to45').addEventListener('click', () => {
-  store.dispatch(toDirection('45deg'));
-});
+// document.getElementById('randFirst').addEventListener('click', () => {
+//   // state.nbColors += 1;
+//   // state.firstColor = randomHexColor();
+//   store.dispatch(randFirst(randomHexColor()));
+// });
 
-document.getElementById('to135').addEventListener('click', () => {
-  store.dispatch(toDirection('135deg'));
-});
+// document.getElementById('randLast').addEventListener('click', () => {
+//   store.dispatch(randLast(randomHexColor()));
+// });
 
-document.getElementById('to225').addEventListener('click', () => {
-  store.dispatch(toDirection('225deg'));
-});
+// document.getElementById('toLeft').addEventListener('click', () => {
+//   // state.direction = "270deg";
+//   store.dispatch(toDirection('270deg'));
+// });
+// document.getElementById('toRight').addEventListener('click', () => {
+//   // state.direction = "90deg";
+//   store.dispatch(toDirection('90deg'));
+// });
 
-document.getElementById('to315').addEventListener('click', () => {
-  store.dispatch(toDirection('315deg'));
-});
+// document.getElementById('to45').addEventListener('click', () => {
+//   store.dispatch(toDirection('45deg'));
+// });
+
+// document.getElementById('to135').addEventListener('click', () => {
+//   store.dispatch(toDirection('135deg'));
+// });
+
+// document.getElementById('to225').addEventListener('click', () => {
+//   store.dispatch(toDirection('225deg'));
+// });
+
+// document.getElementById('to315').addEventListener('click', () => {
+//   store.dispatch(toDirection('315deg'));
+// });
