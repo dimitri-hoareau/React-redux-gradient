@@ -1,7 +1,13 @@
 // == Imports
 import { randomHexColor, generateSpanColor } from './utils';
 import store from './store';
-import { randFirst, randLast, toLeft, toRight } from './store/actions';
+import {
+  randFirst,
+  randLast,
+  toLeft,
+  toRight,
+  toDirection,
+} from './store/actions';
 
 // == Rendu dans le DOM
 function renderNbColors() {
@@ -76,9 +82,25 @@ document.getElementById('randLast').addEventListener('click', () => {
 
 document.getElementById('toLeft').addEventListener('click', () => {
   // state.direction = "270deg";
-  store.dispatch(toLeft());
+  store.dispatch(toDirection('270deg'));
 });
 document.getElementById('toRight').addEventListener('click', () => {
   // state.direction = "90deg";
-  store.dispatch(toRight());
+  store.dispatch(toDirection('90deg'));
+});
+
+document.getElementById('to45').addEventListener('click', () => {
+  store.dispatch(toDirection('45deg'));
+});
+
+document.getElementById('to135').addEventListener('click', () => {
+  store.dispatch(toDirection('135deg'));
+});
+
+document.getElementById('to225').addEventListener('click', () => {
+  store.dispatch(toDirection('225deg'));
+});
+
+document.getElementById('to315').addEventListener('click', () => {
+  store.dispatch(toDirection('315deg'));
 });

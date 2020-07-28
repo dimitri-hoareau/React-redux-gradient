@@ -1,6 +1,6 @@
 // J'importe les ACTION TYPES pour lesquels je veux déclencher un changement
 // de state dans mon reducer
-import { RAND_FIRST, RAND_LAST, TO_LEFT, TO_RIGHT } from './actions';
+import { RAND_FIRST, RAND_LAST, TO_DIRECTION } from './actions';
 
 // Je définis un state initial pour mon app
 const stateInitial = {
@@ -24,15 +24,10 @@ const reducer = (state = stateInitial, action = {}) => {
   // soit un state modifié, soit le state que je
   // reçois en paramètres
   switch (action.type) {
-    case TO_LEFT:
+    case TO_DIRECTION:
       return {
         ...state,
-        direction: '270deg',
-      };
-    case TO_RIGHT:
-      return {
-        ...state,
-        direction: '90deg',
+        direction: action.value,
       };
     case RAND_FIRST:
       return {

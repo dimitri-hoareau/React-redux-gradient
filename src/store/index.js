@@ -1,5 +1,5 @@
-import { createStore } from "redux";
-import reducer from "./reducer";
+import { createStore } from 'redux';
+import reducer from './reducer';
 // Pour créer mon store, je dois lui donner une
 // fonction. Cette fonction servira à dire à redux
 // à quoi doit ressembler le state. Une fonction dont le job
@@ -8,7 +8,3 @@ import reducer from "./reducer";
 const store = createStore(reducer);
 
 export default store;
-
-const stateCopy = store.getState();
-console.log("store: ", store);
-console.log("state:", stateCopy);
