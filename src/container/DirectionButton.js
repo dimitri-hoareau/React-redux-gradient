@@ -6,11 +6,11 @@ import { toDirection } from '../store/actions';
 
 const mapStateToProps = null;
 
-const mapDispatchToProps = (dispatch) => ({
-  toDirection: (direction) => {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  toDirection: () => {
     // Je dispatch une action qui dit de combien de degrés
     // doit changer mon state
-    const action = toDirection(`${direction}deg`);
+    const action = toDirection(`${ownProps.direction}deg`);
     dispatch(action);
   },
 });
