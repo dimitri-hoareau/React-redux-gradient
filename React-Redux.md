@@ -54,6 +54,8 @@ On appelle un composant qui utilise des choses externes pour pouvoir fonctionner
 
 Un composant React, qui importe un dumbComponent et lui donner via les props des infos qui viennent du state ET / OU des fonctions qui dispatchent des actions
 
+![](react-redux.jpg)
+
 **mapStateToProps**
 
 Une fonction utlisée par connect pour savoir:
